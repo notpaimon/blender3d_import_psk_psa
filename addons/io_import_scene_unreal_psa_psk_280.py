@@ -1965,22 +1965,20 @@ class IMPORT_OT_psk(bpy.types.Operator, ImportProps):
         
         no_errors = True
         
-        for f in enumerate(self.files):
-            fpath = self.directory + f[1].name
-            no_errors = no_errors and pskimport( 
-                        fpath,
-                        context = context,
-                        bImportmesh = bImportmesh, bImportbone = bImportbone,
-                        fBonesize = props.fBonesize,
-                        fBonesizeRatio = props.fBonesizeRatio,
-                        bSpltiUVdata = props.bSpltiUVdata,
-                        bReorientBones = props.bReorientBones,
-                        bReorientDirectly = props.bReorientDirectly,
-                        bDontInvertRoot = props.bDontInvertRoot,
-                        bScaleDown = props.bScaleDown,
-                        bToSRGB = props.bToSRGB,
-                        error_callback = util_ui_show_msg
-                        )
+        no_errors = no_errors and pskimport(
+            filepath=self.filepath,
+            context=context,
+            bImportmesh=bImportmesh, bImportbone=bImportbone,
+            fBonesize=props.fBonesize,
+            fBonesizeRatio=props.fBonesizeRatio,
+            bSpltiUVdata=props.bSpltiUVdata,
+            bReorientBones=props.bReorientBones,
+            bReorientDirectly=props.bReorientDirectly,
+            bDontInvertRoot=props.bDontInvertRoot,
+            bScaleDown=props.bScaleDown,
+            bToSRGB=props.bToSRGB,
+            error_callback=util_ui_show_msg
+        )
 
         if not no_errors:
             return {'CANCELLED'}
